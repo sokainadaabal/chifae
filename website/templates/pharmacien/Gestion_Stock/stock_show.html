@@ -1,0 +1,15 @@
+{% load crispy_forms_tags %}
+<form class="form-show wrap-contact100 " method="post" data-url="{% url 'stock_show' stock.id %}" >
+	<button type="button" class="btn-hide-contact100 close" data-dismiss="modal" aria-label="Close">
+		<i class="fas fa-times"></i>
+	</button>
+	<div class="contact100-form-title" style="background-image: url(/static/img/medicament.jpg);">
+		<span> {{stock.nom_c}}</span>
+	</div>
+	<div class="contact100-form"> 
+            {% csrf_token %} 
+            <p class="lead " style="text-align:left;font-family: 'Lato';"> Quantité en stock :<strong style="margin-left:10px;">{{stock.qte_stock}}</strong></p>  
+			<p class="lead" style="text-align:left;font-family: 'Lato';">  Quatité hors stock:<strong style="margin-left:10px;">{{stock.hors_stock}}</strong></p>               
+            <p class="lead" style="text-align:left;font-family: 'Lato';">  Alert Quentité:<strong style="margin-left:10px;">{{stock.alert_qte}}</strong></p> 	
+    </div>
+</form>

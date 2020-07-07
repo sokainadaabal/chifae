@@ -1,0 +1,31 @@
+{% extends 'client/main.html' %}
+{% load static %}
+{% block content %} 
+<div class="center ">
+  <div class="card-wrapper"> 
+  {% for i in articles %}
+    <div class="blog-card ">
+      <div class="blog-card__thumbnail">
+        <img src="{{i.image_ur}}">
+      </div>
+     
+      <div class="blog-card__details">
+        <div class="blog-card__title">
+          {{i.titre}}
+        </div>
+
+        <div class="blog-card__description">
+          {{i.description|safe }}            
+        </div>
+        <br><br>
+        <a class="blog-card__action" href="{% url 'sho_article' i.id %}"> 
+          <span style="margin-right: 10px" >Lire Plus</span>
+          <i class="fa fa-angle-right"> </i>
+        </a>
+      </div>
+    </div>
+  {% endfor %}
+  </div>
+</div>
+
+{% endblock content %}

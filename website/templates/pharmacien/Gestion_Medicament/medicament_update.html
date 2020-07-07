@@ -1,0 +1,82 @@
+{% load crispy_forms_tags %}
+<style>
+    .cke_1 .cke .cke_reset .cke_chrome 
+    .cke_editor_id_contenu 
+    .cke_ltr .cke_browser_gecko
+    {
+            width: 435px;
+            height: 50px;
+   }
+</style>
+{% load static %}
+<form class="update-form wrap-contact100 " method="post" data-url="{% url 'medicament_update'  form.instance.id %}" enctype="multipart/form-data"  action="">
+	<button type="button" class="btn-hide-contact100 close" data-dismiss="modal" aria-label="Close">
+		<i class="fas fa-times"></i>
+	</button>
+	<div class="contact100-form-title" style="background-image: url(/static/img/medicaments.jpg);">
+		<span>Modifier Médicament</span>
+	</div>
+	<div class="contact100-form"> 
+            {% csrf_token %}
+            <div class="input-group mb-2">						
+					{{form.nom_c}} 
+            </div> 
+            <div class="input-group mb-2">						
+					{{form.num_lot}} 
+            </div> 
+            <div class="input-group mb-2">						
+					{{form.img}} 
+                <div class="input-group ">	
+                	<small style="color:#868e96";>{{form.img.help_text}}</small>	
+                </div>
+            </div>
+            <div class="input-group mb-2">						
+					{{form.exp}}
+                <div class="input-group ">	
+                	<small style="color:#868e96";>{{form.exp.help_text}}</small>	
+                </div>
+            </div>
+            <div class="input-group mb-2">						
+					{{form.ppm}} 
+            </div>
+            <div class="input-group mb-2">						
+					{{form.qte}} 
+            </div>
+            <div class="input-group mb-2">						
+					{{form.dosage}} 
+            </div>
+            <div class="input-group mb-2">				
+				{{form.condtionnement}} 
+                <div class="input-group ">	
+                	<small style="color:#868e96";>{{form.condtionnement.help_text}}</small>	
+                </div>	
+            </div>
+            <div class="input-group mb-2">						
+					{{form.famille}} 
+            </div>
+            {% if form.errors %}	
+                {% for field in form %}	
+                    {% for error in field.errors %}	
+                        <div class="alert alert-danger">	
+                            <strong>{{ error|escape }}</strong>	
+                        </div>	
+                    {% endfor %}	
+                {% endfor %}	
+                {% for error in form.non_field_errors %}	
+                    <div class="alert alert-danger">	
+                        <strong>{{ error|escape }}</strong>	
+                    </div>	
+                {% endfor %}	
+            {% endif %}                                                                     
+            <div class="container-contact100-form-btn" >
+				<button type="submit" class="contact100-form-btn"  >
+					Sauvgarder
+				</button>
+			</div>
+    </div>
+</form>
+
+{% block extrascripts %}
+    <script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
+    <script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
+{% endblock %}

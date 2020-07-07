@@ -1,0 +1,19 @@
+{% load crispy_forms_tags %}	
+<form class=" delete-form wrap-contact100 " method="post" data-url="{% url 'medicament_delete' medicament.id %}">
+	<button type="button" class="btn-hide-contact100 close" data-dismiss="modal" aria-label="Close">
+		<i class="fas fa-times"></i>
+	</button>
+	<div class="contact100-form-title" style="background-image: url(/static/img/medicaments.jpg);">
+		<span>Supprimer Médicament </span>
+	</div>
+	<div class="contact100-form"> 
+        {% csrf_token %} 
+        <p class="lead" style="text-align:center;font-family: 'Lato';"> Vous etes sur que vous voulez supprimer ce Médicament <strong>{{medicament.nom_c}}</strong></p>                   
+        <div class="container-contact100-form-btn" >
+			<button type="submit" class=" btn btn-danger contact100-form-btn"  >
+						Supprimer Medicament
+			</button>
+		</div>
+    </div>
+</form>
+

@@ -1,0 +1,50 @@
+
+  <style>
+    .hello-msg
+      {
+        font-size:18px;,
+        color:#fff;
+        margin-right:20px;
+      }
+      .profile-pi{
+		max-width: 50px;
+		max-height:50px;
+		margin: 0 px;
+		border-radius: 50%;
+        
+	}
+  </style>
+  
+
+{% load static %}
+
+    <div class="hamburger">
+        <div class="hamburger__inner">
+            <div class="one"></div>
+            <div class="two"></div>
+            <div class="three"></div>
+        </div>
+    </div>
+    <div class="menu">
+        <div class="logo">
+          <a class="navbar-brand navbar-logo" href="/dashboard" title="Chifae" >
+           <img src="/static/img/logo-picture-14.png" style="width:50px;max-height: 35px;">Chifae
+          </a>
+        </div>
+        <div class="right_menu">
+         
+          <ul class="navbar-nav ml-auto nav-flex-icons">
+            <li class="nav-item avatar dropdown-toggle" style="color: white;" >
+              <i class="fas fa-user"></i>  
+              <div class="profile_dd dropdown-menu dropdown-menu-lg-right dropdown-secondary"
+                aria-labelledby="navbarNavDropdown">
+                  <a class="dropdown-item" href="{% url 'profile' %}">Profil</a>
+                  <a class="dropdown-item" href="{% url 'logout' %}">Se déconnecter</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+     
+    
+    
+

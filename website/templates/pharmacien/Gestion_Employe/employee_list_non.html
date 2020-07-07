@@ -1,0 +1,39 @@
+{% for i in pharmacien_non %}
+
+   <tr>
+      <td>
+         <img  class="profile-pi"  src="{{i.profile_pic.url}}"  alt="Pas d'image">
+      </td>
+      <td>{{i.first_name}}</td>
+      <td>{{i.last_name}}</td>
+      <td>{{i.email}}</td>
+      <td>{{i.telephone}}</td>                    
+      <td style="text-align:center;">
+         <button class="btn  show-form-update" data-url="{% url 'employee_accept' i.id %}" ><i  class="far fa-check-circle"style="color :#02B875;margin-left: auto;margin-right: auto; margin-top:auto; display: block !important;" ></i></button>
+         <button class="btn  show-form-delete"  data-url="{% url 'employee_bloque' i.id %}"  ><i i class="fas fa-ban" style="color: #d9534f; margin-left: auto;margin-right: auto; display: block !important;" ></i></button>
+      </td>
+   </tr>
+   {% empty %}
+   <tr>
+      <td colspan="7" class="text-center bg-green" style="color:#fff;font-family:'Lato';font-size:15px;">Pas de Employées</td>
+   </tr>     
+{% endfor %}
+{% if messages%}
+{% for i in sr %}
+   <tr>
+      <td> {{i.profile_pic.url}} </td>
+      <td>{{i.first_name}}</td>
+      <td>{{i.last_name}}</td>
+      <td>{{i.email}}</td>
+      <td>{{i.telephone}}</td>
+      <td style="text-align:center;">
+         <button class="btn  show-form-update" data-url="{% url 'employee_accept' i.id %}"><i  class="far fa-check-circle"style="color :#02B875;margin-left: auto;margin-right: auto; margin-top:auto; display: block !important;" ></i></button>
+         <button class="btn  show-form-delete"  data-url="{% url 'employee_bloque' i.id %}" ><i i class="fas fa-ban" style="color: #d9534f; margin-left: auto;margin-right: auto; display: block !important;" ></i></button>
+      </td>
+   </tr>
+   {% empty %}
+   <tr>
+      <td colspan="7" class="text-center bg-green" style="color:#fff;font-family:'Lato';font-size:15px;">Pas de Employées</td>
+   </tr>     
+{% endfor %}
+{% endif %}

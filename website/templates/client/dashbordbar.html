@@ -1,0 +1,30 @@
+{% if request.user.activite == "cl" %}
+
+            <div class="profile">
+              <div class="img">
+                <img src="{{request.user.image_url}}" alt="profile_pic">
+              </div>
+              <div class="profile_info">
+                 <p>Bienvenue</p>
+                 <p class="profile_name">{{request.user.username}}</p>
+              </div>
+            </div>
+            <ul>
+              <li >
+                <a href="{% url 'homeC'%}"  class="active">
+                  <span class="icon"><i class="fas fa-tachometer-alt "></i></span>
+                  <span class="title">Médicaments</span>
+                </a>
+              </li>
+              <li>
+                <a href="/articles" class="">
+                  <span class="icon"><i class="far fa-newspaper"></i></span>
+                  <span class="title">Articles</span>
+                </a>
+              </li>
+             
+              
+            </ul>
+
+    
+{% endif %}

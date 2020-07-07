@@ -1,0 +1,18 @@
+{% load crispy_forms_tags %}
+<form class="form-show wrap-contact100 " method="post" data-url="{% url 'fournisseur_show' fournisseur.id %}" >
+	<button type="button" class="btn-hide-contact100 close" data-dismiss="modal" aria-label="Close">
+		<i class="fas fa-times"></i>
+	</button>
+	<div class="contact100-form-title" style="background-image: url(/static/img/Medicaments.jpg);">
+		<span> {{fournisseur.nom}}</span>
+	</div>
+	<div class="contact100-form"> 
+            {% csrf_token %} 
+            <p class="lead " style="text-align:left;font-family: 'Lato';"> E-mail :<strong style="margin-left:10px;">{{fournisseur.email}}</strong></p>  
+			<p class="lead" style="text-align:left;font-family: 'Lato';"> Télèphone:<strong style="margin-left:5px;">{{fournisseur.tel}}</strong></p>                
+            <p class="lead" style="text-align:left;font-family: 'Lato';">Fax:<strong style="margin-left:10px;">{{fournisseur.fax}}</strong></p> 
+			<p class="lead" style="text-align:left;font-family: 'Lato';"> Adress :<strong style="margin-left:10px;">{{fournisseur.adress}}</strong></p>
+			<p class="lead" style="text-align:left;font-family: 'Lato';"> Ville :<strong style="margin-left:10px;">{{fournisseur.ville}}</strong></p>
+			
+    </div>
+</form>

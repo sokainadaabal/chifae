@@ -1,0 +1,22 @@
+{% extends 'client/main.html' %}
+{% load static %}
+{% block content %}
+  <div class="col-md-12 jumbotron " style="position: initial; border-radius:15px;">
+                <div class="form-row ">
+                            <div class="col-md-8 mb-3" style="position: initial;">
+                                <h1 class="display-3" style="font-size:11px;">{{article.titre}}</h1>
+                            </div>
+                            <div class="col-md-4 mb-3" style="position: initial;">
+                               <p class="lead" style="font-size:9px;text-align:end;">{{article.pub_date }}</p>
+                            </div>
+                </div>
+                <hr style="margin-top:-15px;">
+                <div class="form-row ">
+                    <div  style="position: initial;">
+                        <p class="lead" style="font-size:10px;text-align:left;margin-top:-20px">{{article.description|safe }}</p>
+                        <br>
+                        <p style="font-size:10px;text-align:left;margin-top:-20px">{{article.contenu|safe }}</p>
+                    </div>
+                </div>
+        </div>  
+{% endblock %}

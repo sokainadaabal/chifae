@@ -1,0 +1,50 @@
+{% load crispy_forms_tags %}
+<form class=" create-form wrap-contact100 " method="post" data-url="{% url 'fournisseur_create'%}">
+	  <button type="button" class="btn-hide-contact100 close" data-dismiss="modal" aria-label="Close">
+		  <i class="fas fa-times"></i>
+	  </button>
+	  <div class="contact100-form-title" style="background-image: url(/static/img/Medicaments.jpg);">
+		   <span>Ajouter Fournisseur</span>
+	  </div>
+   	<div class="contact100-form"> 
+            {% csrf_token %}
+      <div class="input-group mb-2">						
+				{{form.nom}} 
+      </div> 
+      <div class="input-group mb-2">					
+				{{form.email}} 
+      </div> 
+      <div class="input-group mb-2">						
+				{{form.tel}}           
+      </div>
+      <div class="input-group mb-2">						
+				{{form.fax}}      
+      </div> 
+      <div class="input-group mb-2">						
+				{{form.adress}} 
+      </div>
+      <div class="input-group mb-2">						
+				{{form.ville}} 
+      </div>
+        
+      {% if form.errors %}	
+        {% for field in form %}	
+          {% for error in field.errors %}	
+            <div class="alert alert-danger">	
+              <strong>{{ error|escape }}</strong>	
+            </div>	
+          {% endfor %}	
+        {% endfor %}	
+        {% for error in form.non_field_errors %}	
+          <div class="alert alert-danger">	
+            <strong>{{ error|escape }}</strong>	
+          </div>	
+        {% endfor %}	
+      {% endif %}                                                                     
+      <div class="container-contact100-form-btn" >
+				<button type="submit" class="contact100-form-btn"  >
+					Sauvgarder
+				</button>
+			</div>
+    </div>
+</form>

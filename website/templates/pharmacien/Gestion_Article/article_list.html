@@ -1,0 +1,32 @@
+{% for i in post  %}
+    <tr class="table-light">
+        <td class="col-md-12 jumbotron " style="position: initial; border-radius:15px;">
+                <div class="form-row ">
+                            <div class="col-md-8 mb-3" style="position: initial;">
+                                <h1 class="display-3" style="font-size:11px;">{{i.titre|safe}}</h1>
+                            </div>
+                            <div class="col-md-4 mb-3" style="position: initial;">
+                               <p class="lead" style="font-size:9px;text-align:end;">{{i.pub_date}}</p>
+                            </div>
+                </div>
+                <hr style="margin-top:-15px;">
+                <div class="form-row ">
+                    <div class="col-md-10 mb-3" style="position: initial;">
+                            <p class="lead" style="font-size:10px;text-align:left;margin-top:-20px">{{i.description|safe}}</p>
+                    </div>
+                    <div class="col-md-2 " style="position: initial;">
+                        <a class="lead form-show" data-url="{% url 'article_show' i.id %}" role="button" style="font-size:10px;margin-left:75px; "><i class="fas fa-eye" style="color:#f0ad4e;"></i></a>
+                        <a class="lead show-form-update"  role="button"  data-url="{% url 'article_update' i.id %}" style="font-size:10px;color:#f0ad4e;margin-left:5px;"><i class="fas fa-pen" style="color:#02925d"></i></a>
+                        <a class="lead show-form-delete" data-url="{% url 'article_delete' i.id %}" role="button" style="font-size:10px;margin-left:5px;"><i class="far fa-trash-alt" style="color:#d23430"></i></a>    
+                    </div>
+                </div>
+        </td>  
+    </tr> 
+     {% empty %}
+    <tr>
+        <td colspan="7" class="text-center  bg-green" style="color:#fff;font-family:'Lato';font-size:15px;">Pas d'articles</td>
+    </tr>
+    
+{% endfor %}
+
+

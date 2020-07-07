@@ -1,0 +1,79 @@
+<style>
+    .cke_1 .cke .cke_reset .cke_chrome 
+    .cke_editor_id_contenu 
+    .cke_ltr .cke_browser_gecko
+    {
+            width: 435px;
+            height: 50px;
+
+    }
+</style>
+{% load static %}
+{% load crispy_forms_tags %}
+	
+<form class="update-form wrap-contact100 " method="post"  data-url="{% url 'article_update' form.instance.id %}">
+	<button type="button" class="btn-hide-contact100 close" data-dismiss="modal" aria-label="Close">
+		<i class="fas fa-times"></i>
+	</button>
+	<div class="contact100-form-title" style="background-image: url(/static/img/article.jpg);">
+		<span>Ajouter Article</span>
+	</div>
+	<div class="contact100-form"> 
+            {% csrf_token %}
+            <div class="input-group mb-2">						
+				{{form.titre}} 
+            </div>  
+            <div class="input-group mb-2">						
+				{{form.image}} 
+                <div class="input-group ">	
+                	<small style="color:#868e96";>{{form.image.help_text}}</small>	
+                </div>
+            </div>
+            <div class="input-group mb-2">						
+				{{form.description}}
+                 <div class="input-group ">	
+                	<small style="color:#868e96";>{{form.description.help_text}}</small>	
+                </div> 
+            </div>
+            <div class="input-group mb-2">						
+				{{form.contenu}} 
+                <div class="input-group ">	
+                	<small style="color:#868e96";>{{form.contenu.help_text}}</small>	
+                </div>
+            </div> 
+            <div class="input-group mb-2">						
+         		<p>{{form.public}} <label style="margin-left:10px;">{{form.public.label}}</label> </p>
+            </div>
+            
+            {% if form.errors %}	
+                {% for field in form %}	
+                    {% for error in field.errors %}	
+                        <div class="alert alert-danger">	
+                            <strong>{{ error|escape }}</strong>	
+                        </div>	
+                    {% endfor %}	
+                {% endfor %}	
+                {% for error in form.non_field_errors %}	
+                    <div class="alert alert-danger">	
+                        <strong>{{ error|escape }}</strong>	
+                    </div>	
+                {% endfor %}	
+            {% endif %}                                                                     
+            <div class="container-contact100-form-btn" >
+				<button type="submit" class="contact100-form-btn"  >
+					Sauvgarder
+				</button>
+			</div>
+    </div>
+</form>
+{% block extrascripts %}
+    <script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
+    <script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
+{% endblock %}
+<script>
+    $(function () {
+        CKEDITOR.replace('editor1', {
+            toolbar: 'Basic'
+        });
+    });
+</script>

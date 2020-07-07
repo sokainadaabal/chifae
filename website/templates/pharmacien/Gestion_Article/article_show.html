@@ -1,0 +1,29 @@
+{% load crispy_forms_tags %}
+<form class="form-show wrap-contact100 " method="post" data-url="{% url 'article_show' post.id %}" >
+	<button type="button" class="btn-hide-contact100 close" data-dismiss="modal" aria-label="Close">
+		<i class="fas fa-times"></i>
+	</button>
+	{% if  post.image_url %}
+	<div class="contact100-form-title" style="background-image: url({{post.image_url}});">
+		<span style="text-align:center"> {{post.titre}}</span>
+	</div>
+	{% else %}
+	<div class="contact100-form-title" style="background-image: url(/static/img/article.jpg);">
+		<span style="text-align:center"> {{post.titre}}</span>
+	</div>
+	{% endif %}
+	<div class="contact100-form"> 
+            {% csrf_token %} 
+		<div class="form-row ">
+            <div class="col-md-6 mb-3" style="position: initial;margin-top:-15px;">
+                <h1 class="display-3" style="font-size:11px;">{{post.description|safe}}</h1>
+            </div>
+            <div class="col-md-6 mb-3" style="position: initial;text-align:end;">
+                <p class="lead" style="font-size:9px;text-align:end;">{{post.pub_date}}</p>
+            </div>
+        </div>	
+		<div class="form-row " style="position: initial;">      
+            <p class="lead" style="font-size:10px;text-align:left;margin-top:-20px">{{post.contenu |safe}}</p>       
+	    </div>	    		
+	</div>
+</form>

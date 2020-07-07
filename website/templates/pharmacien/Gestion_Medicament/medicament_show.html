@@ -1,0 +1,21 @@
+{% load crispy_forms_tags %}
+<form class="form-show wrap-contact100 " method="post" data-url="{% url 'medicament_show' medicament.id %}">
+	<button type="button" class="btn-hide-contact100 close" data-dismiss="modal" aria-label="Close">
+		<i class="fas fa-times"></i>
+	</button>
+	<div class="contact100-form-title" style="background-image: url({{medicament.image_url}});">
+		<span> {{medicament.nom_c}}</span>
+	</div>
+	<div class="contact100-form"> 
+            {% csrf_token %} 
+            <p class="lead " style="text-align:left;font-family: 'Lato';"> Nom commercial :<strong style="margin-left:10px;">{{medicament.nom_c}}</strong></p>  
+			<p class="lead" style="text-align:left;font-family: 'Lato';"> Numéro de lot : <strong style="margin-left:10px;">{{medicament.num_lot}}</strong></p>                
+            <p class="lead" style="text-align:left;font-family: 'Lato';"> Date d'expiration :<strong style="margin-left:10px;">{{medicament.exp}}</strong></p> 
+			<p class="lead" style="text-align:left;font-family: 'Lato';"> Prix Pobulaire de vente  :<strong style="margin-left:10px;">{{medicament.ppm}}</strong> DH</p>
+			<p class="lead" style="text-align:left;font-family: 'Lato';"> Quantité :<strong style="margin-left:10px;">{{medicament.qte}}</strong></p>
+			<p class="lead"style="text-align:left;font-family: 'Lato'; margin-right: 80px;">Dosage:<strong style="margin-left:10px;">{{medicament.dosage}}</strong></p> 
+			<p class="lead" style="text-align:left;font-family: 'Lato';"> Forme de médicament:<strong style="margin-left:10px;">{{medicament.famille}}</strong></p> 
+			<p class="lead" style="text-align:left;font-family: 'Lato';"> Conditionnement:<strong>{{medicament.condtionnement|safe}}</strong></p> 
+    </div>
+</form>
+

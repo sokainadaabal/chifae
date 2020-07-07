@@ -1,0 +1,83 @@
+{% extends 'pharmacien/main.html' %}
+{% load static %}
+{% block content %}
+{% if request.user.activite == "phar" %}
+
+<div class="row">
+	<div class="col-lg-12" style="position:initial">
+		<div class="card card-body" style="position:initial">
+		     <div class="form-row">
+				<div class="col-md-8" style="position:initial;margin-top:-5px;">
+				   <a  class="btn btn-outline-danger " href="{% url 'vente'%}"> &larrhk; Retoure au list</a>
+				</div>
+				
+		    </div>
+		    <hr style="    border-color: transparent;margin-top:-2px">
+            <table class="table">
+                <tr>
+                    <th><h5>Médicaments: <strong>{{order.get_vendre_articl}}</strong></h5></th>
+                    <th><h5>Total:<strong>{{order.get_vendre_total}} DH</strong></h5></th>
+                    <th>
+					    <a  style="float:right; margin:5px;text-align:end" class="btn btn-danger" href="{% url 'facture' order.id%}"><i class="fas fa-file-invoice-dollar"></i></a>
+                        <button  style="float:right; margin:5px;" class="btn btn-success" id="make-payment">Paymente</button>
+                    </th>
+                </tr>
+            </table>
+        </div>
+
+		<br>
+           <div class="card card-body" style="position:initial">
+				<div class="cart-row">
+					<div style="flex:2"></div>
+					<div style="flex:2"><strong>Medicament</strong></div>
+					<div style="flex:1"><strong>Prix</strong></div>
+					<div style="flex:1"><strong>Quantité</strong></div>
+					<div style="flex:1"><strong>Total</strong></div>
+				</div>
+		{% for item in items%}	
+			<div class="cart-row">
+					<div style="flex:2"><img class="row-image" src="{{item.medicament.image_url}}"></div>
+					<div style="flex:2"><p>{{item.medicament.nom_c}}</p></div>
+					<div style="flex:1"><p>{{item.medicament.ppm|floatformat:2}}  DH</p></div>
+					<div style="flex:1">
+						<p class="quantity">{{item.qte_vendre}}</p>
+						<div class="quantity">
+							<img data-item="{{item.medicament.id}}" class="chg-quantity update-car"  data-action="add" src="{% static  'img/arrow-up.png' %}">
+					
+							<img data-item="{{item.medicament.id}}" class="chg-quantity update-car" data-action="remove" src="{% static  'img/arrow-down.png' %}">
+						</div>
+					</div>
+					<div style="flex:1"><p>{{item.get_total}}DH</p></div>
+		   </div>
+		   {% endfor %}
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="modal-stock" >
+    <div class="modal-dialog" style="max-width:600px">
+        <div class="modal-content">
+		  <div class="box-element">
+				<div class="cart-row">
+					<div style="flex:2"></div>
+					<div style="flex:2"><strong>Medicament</strong></div>
+					<div style="flex:1"><strong>Prix</strong></div>
+					<div style="flex:4;text-align:center;"><strong>Action</strong></div>
+				</div>
+		    {% for item in medicaments%}
+                <div class="cart-row">
+					<div style="flex:2"><img class="row-image" src="{{item.image_url}}"></div>
+					<div style="flex:2"><p>{{item.nom_c}}</p></div>
+					<div style="flex:1"><p>{{item.ppm|floatformat:2}}  DH</p></div>
+					<div style="flex:4">
+					   <button data-item="{{item.id}}" data-action="add" class="btn btn-outline-secondary add-btn update-car">Ajouter</button>	
+					</div>
+				</div>
+		    {% endfor %}
+		  </div>
+        </div>
+    </div>
+</div>
+
+{% endif %}
+{% endblock %}

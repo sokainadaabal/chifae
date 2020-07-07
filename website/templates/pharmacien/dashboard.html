@@ -1,0 +1,65 @@
+{% extends 'pharmacien/main.html' %}
+{% if request.user.activite == "phar" %}
+{% block content %}  <br>
+    <div class="row" style="margin-top:-50px;">
+            
+            <div class="col-lg-3 col-sm-6" >
+                    <div class="card-box bg-blue" >
+                            <div class="inner">
+                                <h3>124578</h3>
+                                <p> Commandes </p>
+                            </div>
+                            <div class="icon">
+                                <i class="fas fa-exchange-alt" aria-hidden="true"></i>
+                            </div>
+                            <a href="#" class="card-box-footer">Voire Plus <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+                <div class="card-box bg-green">
+                    <div class="inner">
+                        <h3> {{total}} </h3>
+                        <p> Fournisseurs </p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-ambulance"aria-hidden="true"></i>
+                    </div>
+                    <a href="/fournisseur" class="card-box-footer">Voire Plus <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+    
+            <div class="col-lg-3 col-sm-6">
+                <div class="card-box bg-orange">
+                    <div class="inner ">
+                        <h3>{{c}}</h3>
+                        <p>Employées </p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-user-plus" aria-hidden="true"></i>
+                    </div>
+                    <a href="/employee" class="card-box-footer">Voire Plus <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+                <div class="card-box bg-red">
+                    <div class="inner">
+                        <h3> {{total2}}</h3>
+                        <p> Stock</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fas fa-cubes" aria-hidden="true"></i>
+                    </div>
+                    <a href="/stock" class="card-box-footer">Voire Plus <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+           <br><br>
+            <div class="col-md-12" style="position: initial;margin-top:50px; text-align:center">
+              <div class="row">
+                <div class="col-8"><canvas id="myChart" width="400" height="200" style="margin-left:200px;" ></canvas></div>
+              </div>
+            </div>
+ 
+    </div>
+
+{% endblock  %}
+{% endif %}

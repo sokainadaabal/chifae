@@ -1,0 +1,38 @@
+{% if request.user.activite == "emp" %}
+            <div class="profile">
+              <div class="img">
+                <img src="{{request.user.image_url}}" alt="profile_pic">
+              </div>
+              <div class="profile_info">
+                 <p>Bienvenue</p>
+                 <p class="profile_name">{{request.user.username}}</p>
+              </div>
+            </div>
+            <ul>
+              <li >
+                <a href="/dashboard"  class="active">
+                  <span class="icon"><i class="fas fa-tachometer-alt "></i></span>
+                  <span class="title">Accueil</span>
+                </a>
+              </li>
+              
+              <li>
+                <a href="/medicament">
+                  <span class="icon"><i class="fas fa-pills"></i></span>
+                  <span class="title">Médicaments</span>
+                </a>
+              </li>
+             
+              <li>
+                <a href="/vente">
+                  <span class="icon"><i class="fas fa-shopping-bag"></i></span>
+                  <span class="title">Ventes</span>
+                </a>
+              </li>
+              
+              
+            </ul>
+
+    
+
+{% endif %}

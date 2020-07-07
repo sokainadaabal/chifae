@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="fr" >
+<head>
+	<title>Facture</title>
+	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+	<meta http-equiv="content-type" content="text-html; charset=utf-8">
+	<meta charset="ISO-8859-1"> 
+</head>
+<body style="font-family: 'Source Sans Pro', sans-serif;font-weight: 300;font-size: 12px;margin: 0;padding: 0;">
+	<header class="clearfix" style="content: ""; display: table; clear: both;margin: 0;padding: 0; border: 0;font: inherit;font-size: 100%;vertical-align: baseline;">
+		<div class="container" styele="min-width: 500px; margin: 0 auto; padding: 0 20px;">
+			<table border="0" cellspacing="0" cellpadding="0" >
+				<thead style=" vertical-align: middle; border-color: inherit;">
+					<tr>
+						<th class="desc" style="text-align:left;">
+			               <div class="company-address" style="float: left; max-width: 150px; line-height: 1.7em;">     
+			                 <h2 class="title" style="color: #8BC34A; font-weight: 400; font-size: 1.5em; text-transform: uppercase;">
+							    <img class="logo" src="static/img/logo-picture-13.png" style="width:50px;">Chifae
+							</h2>
+			              </div>
+                        </th>
+                        <th class="total"  style="text-align:center;float: right;color:#8BC34A;">
+							<div class="phone left">
+								<span class="circle"><img  alt=""><span class="helper"></span></span>
+								<a href="tel:644-338-075" style="color: inherit;opacity: 0.7; text-decoration: none;">+212 (644) 338-075</a>
+								<span class="helper"></span>
+							</div>
+						</th>
+				        <th class="total"  style="text-align:right;float:right;color:#8BC34A;">
+							<div class="email right">
+								<span class="circle"><img  alt=""><span class="helper"></span></span>
+								<a href="mailto:chifae@gmail.com" style="color: inherit;opacity: 0.7; text-decoration: none;">chifae@gmail.com</a>
+								<span class="helper"></span>
+							</div>
+                        </th>
+                    </tr>
+					
+                </thead>
+            </table>
+		</div>
+	</header>
+     <br>
+	<section>
+		<div class="container col-md-12">
+			<div class=" details clearfix col-md-6" style="margin-bottom: 55px;">
+                <table border="0" cellspacing="0" cellpadding="0" >
+				<thead style=" vertical-align: middle; border-color: inherit;">
+					<tr>
+						<th class="desc" style="text-align:left;background: #E8F3DB; color: #777777;  border-bottom: 5px solid #FFFFFF;border-right: 4px solid #E8F3DB;border-right: none;">
+						  <div class="client left" style="width: 50%;line-height: 20px;">
+								<p>Facture Par:</p><p> <img class="logo" src="{{nom_pharmacie.image_url}}" style="width:50px;">  {{nom_pharmacie.nom}} </p>
+								<p class="name" style="color: #8BC34A;"> Dr . {{pharmacie.first_name}} {{pharmacie.last_name}}</p>
+								<p>{{pharmacie.adresse_professionnelle}}, {{pharmacie.ville_exercice}}</p>
+								<a href="mailto:john@example.com"  style="color: inherit;opacity: 0.7; text-decoration: none;">{{pharmacie.email}}</a>
+				          </div>
+				       </th>
+						<th class="total" style="text-align:right;" ><div class="data right col-md-6" style="width: 50%;text-align: right; background: #E8F3DB; color: #777777;  border-bottom: 5px solid #FFFFFF;border-right: 4px solid #E8F3DB;border-right: none;">
+							<div class="title" style="margin-bottom: 15px;color: #8BC34A; font-size: 3em;font-weight: 400; text-transform: uppercase;">Facture {{order.id}}</div>
+								<div class="date">
+									Date de facture: {{today}}<br>
+									à : {{time}}
+								</div>
+				            </div>
+						</th>
+					</tr>
+				</thead>
+                </table>
+			</div>
+
+			<table border="0" cellspacing="0" cellpadding="0" style="width: 100%;
+			border-collapse: collapse;
+			border-spacing: 0;
+			font-size: 0.9166em;">
+				<thead style="display: table-header-group; vertical-align: middle; border-color: inherit;">
+					<tr >
+						<th class="desc" style="width: 55%;padding: 5px 10px;background-color: #8BC34A; border-bottom: 5px solid #FFFFFF; border-right: 4px solid #FFFFFF; text-align: left; color: white; font-weight: 400;text-transform: uppercase;">Medicament</th>
+						<th class="qty" style="width: 15%;padding: 5px 10px;background-color: #8BC34A; border-bottom: 5px solid #FFFFFF; border-right: 4px solid #FFFFFF; text-align: center; color: white; font-weight: 400;text-transform: uppercase;">Quantité</th>
+						<th class="unit" style="width: 15%;padding: 5px 10px;background-color: #8BC34A; border-bottom: 5px solid #FFFFFF; border-right: 4px solid #FFFFFF; text-align: center; color: white; font-weight: 400;text-transform: uppercase;">Prix</th>
+						<th class="total" style="width: 15%;padding: 5px 10px;background-color: #8BC34A; border-bottom: 5px solid #FFFFFF; border-right: 4px solid #FFFFFF; text-align: center; color: white; font-weight: 400;text-transform: uppercase;">Total</th>
+					</tr>
+				</thead>
+				<tbody>
+				   {% for i in vente%}
+					<tr style="padding: 10px;background: #E8F3DB; color: #777777; text-align: right; border-bottom: 5px solid #FFFFFF;border-right: 4px solid #E8F3DB;border-right: none;">
+						<td class="desc" style="text-align: left;"><h3 style="margin-bottom: 5px;color: #8BC34A;font-weight: 600;">{{i.medicament}}</h3></td>
+						<td class="qty" style="text-align:center;">{{i.qte_vendre}}</td>
+						<td class="unit" style="text-align:center;">{{i.medicament.ppm|floatformat:2}} DH</td>
+						<td class="total" style=";text-align:center;">{{i.get_total}} DH</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+			<div class="no-break">
+				<table class="grand-total" style="margin-bottom: 45px;">
+					<tbody>
+					    <tr style="padding: 5px 10px;border: none;color: #777777;text-align: right;">
+							<td class="desc"style="background-color: transparent;" ></td>
+							<td class="unit" colspan="2"style="">Nombre d'article:</td>
+							<td class="total">{{order.get_vendre_articl}} </td>
+						</tr>
+						<tr style="padding: 5px 10px;border: none;color: #777777;text-align: right;font-weight: 600;color: #8BC34A;font-size: 1.18181818181818em;">
+							<td class="desc"style="background-color: transparent;" ></td>
+							<td class="unit" colspan="2"style="">Prix TOTAL:</td>
+							<td class="total">{{order.get_vendre_total}} DH</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</section>
+
+	<footer style="	margin-bottom: 200px;background: #E8F3DB; color: #777777;  border-bottom: 5px solid #FFFFFF;border-right: 4px solid #E8F3DB;border-right: none;">
+		<div class="container">
+			<div class="thanks" style="margin-bottom: 40px;
+			color: #8BC34A;
+			font-size: 1.16666666666667em;
+			font-weight: 600;">Merci de Votre Visite!</div>
+			<div class="notice" style="margin-bottom: 25px;">
+				<div>Avis :</div>
+				<div>Pouvez consulter le site pour plus d'infos et conseil.</div>
+			</div>
+			<div class="end"  style="padding-top: 5px; border-top: 2px solid #8BC34A;text-align: center;">La facture  été créée sur le site Chifae et est valide sans la signature et le sceau. <br> Tel : {{pharmacie.telephone}}    / Fax: {{pharmacie.gsm}}</div>
+		</div>
+	</footer>
+
+</body>
+
+</html>

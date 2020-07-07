@@ -1,0 +1,66 @@
+from django.urls import include,path
+from . import views
+from django.conf.urls import url
+
+
+urlpatterns = [
+    path('',views.index),
+    path('dashboard/',views.home,name="home"),
+    path('dashboard/Emp',views.homeEmploye,name="homeP"),
+    path('dashboard/Client',views.homeC,name="homeC"),
+    path('login-phar/',views.loginpage,name='login'),
+    path('register/',views.register,name='register'),
+  
+    path('logout/',views.logoutUser,name='logout'),
+    path('profil/',views.profilePhar,name='profil'),
+    path('profil/Emp',views.profile,name='profile'),
+    path('fournisseur/',views.fournisseur,name='fournisseur'),
+    url(r'^fournisseur/create/$', views.fournisseur_create, name='fournisseur_create'),
+    url(r'^fournisseur/(?P<id>\d+)/update/$', views.fournisseur_update, name='fournisseur_update'),
+    url(r'^fournisseur/(?P<id>\d+)/delete/$', views.fournisseur_delete, name='fournisseur_delete'),
+    url(r'^fournisseur/(?P<id>\d+)/show/$', views.fournisseur_show, name='fournisseur_show'),
+    path('employee',views.employee,name='employee'),
+    url(r'^employee/(?P<id>\d+)/accept/$', views.employeeAccept, name='employee_accept'),
+    url(r'^employee/(?P<id>\d+)/bloque/$', views.employeeBloquer, name='employee_bloque'),
+    url(r'^csv/$', views.export_csv, name='export_csv'),
+    path('article/',views.article,name='article'),
+    path('article/add',views.add_article,name='add_article'),
+    url(r'^article/(?P<id>\d+)/delete/$',views.article_delete,name='article_delete'),
+    url(r'^article/(?P<id>\d+)/update/$',views.article_update,name='article_update'),
+    url(r'^article/(?P<id>\d+)/show/$',views.article_show,name='article_show'),
+    path('medicament/',views.medicament,name='medicament'),
+    url(r'^medicament/add',views.medicament_add,name='medicament_add'),
+    url(r'^medicament/(?P<id>\d+)/show/$',views.medicament_show,name='medicament_show'),
+    url(r'^medicament/(?P<id>\d+)/update/$',views.medicament_update,name='medicament_update'),
+    url(r'^medicament/(?P<id>\d+)/delete/$',views.medicament_delete,name='medicament_delete'),
+    url(r'^csv/medicament/$', views.export_csv_medicament, name='export_csv_medicament'),
+    path('stock/',views.stock,name='stock'),
+    url(r'^stock/add',views.stock_add,name='stock_add'),
+    url(r'^stock/(?P<id>\d+)/delete/$',views.stock_delete,name='stock_delete'),
+    url(r'^stock/(?P<id>\d+)/update/$',views.stock_update,name='stock_update'),
+    url(r'^stock/(?P<id>\d+)/show/$',views.stock_show,name='stock_show'),
+    path('vente/',views.vente,name='vente'),
+    path('vente/add',views.vente_add,name='vente_add'),
+    url(r'^vente/(?P<id>\d+)/api/$',views.pdf,name='facture'),
+    url(r'^vente/(?P<id>\d+)/update/$',views.vente_update,name='vente_update'),
+    path('process_order/',views.process_order,name='process_order'),
+    path('update_item/',views.updateItem,name='updateItem'),
+    path('update_article/',views.updateArticle,name='updateArticle'),
+    path('vente_delete/',views.vente_delete,name='vente_delete'),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
+    path("ckeditor5/", include('django_ckeditor_5.urls')),
+
+    path('commande/',views.commande,name='commande'),
+    path('commande/add',views.commande_add,name='commande_add'),
+    path('update_commande/',views.updatecommande,name='updatecommande'),
+    path('process_commande/',views.process_commande,name='process_commande'),
+    url(r'^send/(?P<id>\d+)/$',views.send_eamil,name='send_eamil'),
+
+
+    path('update_online/',views.updateOnline,name='updateOnline'),
+    path('venteonline_add/',views.venteonline_add,name='venteonline_add'),
+    path('online_order/',views.online_order,name='online_order'),
+    path('articles/',views.Showarticle,name='Showarticle'),
+    url(r'^show/(?P<id>\d+)/$',views.sho_article,name='sho_article'),
+]
+

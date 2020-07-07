@@ -1,0 +1,38 @@
+
+{% for i in gerant %}
+   <tr>
+      <td  class="col-md-2" style="position: initial;">{{i.get_vendre_articl}}</td>
+      <!--td  class="col-md-2"  style="position:initial">{{i.qte_vendre}}</td-->
+      <td  class="col-md-2" style="position:initial">{{i.get_vendre_total}}</td>
+      <td style="text-align:center; position:initial" class="col-md-3">
+         <button class="btn btn-warning form-show" data-url="{% url 'stock_show' i.id %}" ><i class=" fas fa-eye  " style="margin-left: auto;margin-right: auto; display: block !important;" ></i></button>
+         <button class="btn btn-success show-form-update" data-url="{% url 'stock_update' i.id %}" ><i class=" fas fa-edit " style="margin-left: auto;margin-right: auto; display: block !important;" ></i></button>
+         <button class="btn btn-danger show-form-delete"  data-url="{% url 'stock_delete' i.id %}"  ><i class=" far fa-trash-alt " style="margin-left: auto;margin-right: auto; display: block !important;" ></i></button>
+      </td>
+   </tr>
+   {% empty %}
+                         <tr>
+                           <td colspan="7" class="text-center bg-green" style="color:#fff;font-family:'Lato';font-size:15px;">Pas de Medicament en Stock</td>
+                         </tr>     
+{% endfor %}
+{% if messages%}
+   {% for i in sr %}
+      <tr>
+                          <td  class="col-md-2" style="position: initial;">{{i.nom_c}}</td>
+                           <td  class="col-md-2"  style="position:initial">{{i.qte_stock}}</td>
+                           <td  class="col-md-2" style="position:initial">{{i.hors_stock}}</td>
+                           <td style="text-align:center; position:initial" class="col-md-3">
+                              <button class="btn btn-warning form-show" data-url="{% url 'stock_show' i.id %}" ><i class=" fas fa-eye  " style="margin-left: auto;margin-right: auto; display: block !important;" ></i></button>
+                              <button class="btn btn-success show-form-update" data-url="{% url 'stock_update' i.id %}" ><i class=" fas fa-edit " style="margin-left: auto;margin-right: auto; display: block !important;" ></i></button>
+                              <button class="btn btn-danger show-form-delete"  data-url="{% url 'stock_delete' i.id %}"  ><i class=" far fa-trash-alt " style="margin-left: auto;margin-right: auto; display: block !important;" ></i></button>
+                           </td>
+      </tr>
+      {% empty %}
+                         <tr>
+                           <td colspan="7" class="text-center bg-warning">Pas de Medicament en Stock</td>
+                         </tr>     
+{% endfor %}
+{% endif %}
+
+
+                

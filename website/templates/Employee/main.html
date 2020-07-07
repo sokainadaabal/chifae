@@ -1,0 +1,129 @@
+{% load static %}
+{% if request.user.activite == "emp" %}
+<!DOCTYPE html>
+<html>
+   <head>
+     <title>Chifae</title>
+      <link rel="shortcut icon" href="/static/img/logo-picture-13.png">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.css">
+      <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/litera/bootstrap.min.css" rel="stylesheet" integrity="sha384-pLgJ8jZ4aoPja/9zBSujjzs7QbkTKvKw1+zfKuumQF9U+TH3xv09UUsRI52fS+A6" crossorigin="anonymous">
+      <link rel="stylesheet" type="text/css" href="{% static '/css/navbar.css' %}">
+      <script src="https://cdn.linearicons.com/free/1.0.0/svgembedder.min.js"></script>   
+      <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
+
+   <head>
+   <body>
+    
+    <div class="wrapper">
+      <div class="top_navbar">
+             {% include 'Employee/navbar.html' %}
+      </div>
+   </div>
+    <div class="main_container">
+               <div class="sidebar"> 
+                  <div class="sidebar__inner">
+                      {% include 'Employee/dashbordbar.html' %}
+                  </div>
+               </div>
+               <div class="container">
+                  
+                     {% block content %}
+                     {% endblock  %}
+                   
+               </div>
+            
+   </div>   
+  
+  
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+   
+    {% block javascript %}
+         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+         <script src="{% static 'js/navbar.js' %}"></script>
+         <script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
+         <script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
+         <script>
+             $(document).ready(
+               function(){
+               $(".hamburger .hamburger__inner").click(function(){
+                  $(".wrapper").toggleClass("active")
+               });
+               $(".top_navbar .dropdown-toggle").click(function(){
+                  $(".profile_dd").toggleClass("active");
+               });
+                var ctx = document.getElementById('myChar');
+         var myChart = new Chart(ctx, {
+             type: 'line',
+             data: {
+               labels: [{%for i in ie %}'{{i.date_orde|date:"F j" }}',{% endfor%}],
+               datasets: [  {
+                  label: 'Vendu par moi',
+                  data:[{%for i in emp%}{{i.qte_vendre}},{% endfor%}],
+                  backgroundColor: 'rgba(43, 132, 36, 0.53)',
+                  borderColor: 'rgba(43, 132, 36, 0.68)'
+               }]
+            },
+            options: {
+                  tooltips: {
+                     mode: 'index'
+                  },
+                  scales: {
+                     yAxes: [{
+                        ticks: {
+                           beginAtZero: true
+                        }
+                  }]
+            }
+   
+            }
+          });
+            });
+            
+          
+            var total = '{{order.get_vendre_total|floatformat:2}}'
+            var user ='{{request.user}}'
+            function getCookie(name) 
+            {
+                  var cookieValue = null;
+                  if (document.cookie && document.cookie !== '') {
+                     var cookies = document.cookie.split(';');
+                     for (var i = 0; i < cookies.length; i++) {
+                           var cookie = cookies[i].trim();
+                           // Does this cookie string begin with the name we want?
+                           if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                              cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                              break;
+                           }
+                     }
+                  }
+                  return cookieValue;
+            }
+            var csrftoken = getCookie('csrftoken');
+            document.getElementById('make-payment').addEventListener('click',function(e){
+               paymentButton()
+            })
+            function paymentButton() 
+            {
+               console.log('le buttopn de payment est click')
+               var userFormData = {'total':total}
+               var url ='/process_order/'
+               fetch(url,{
+                  method:'POST',
+                  headers:{
+                          'Content-Type': 'application/json',
+                          'X-CSRFToken': csrftoken,},
+                  body:JSON.stringify({'form':userFormData}) })
+                  .then((response) => response.json())
+                  .then((data)=>{
+                          console.log('Success:',data);
+                          alert('La vente est complete');
+                          window.location.href="{% url 'vente'%}"}) 
+             }
+         </script>
+    {% endblock %}
+   </body>
+</html>
+{% endif %}

@@ -1,0 +1,68 @@
+{% extends 'Employee/main.html' %}
+{% block content %}
+   {% if request.user.activite == "emp" %}
+        <div class="row">
+            <div class="col-md-12" style="position: initial;" >
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#home">Tous</a>
+                        </li>
+                    </ul>
+                    <div id="myTabContent" class="tab-content">
+                    <div class="tab-pane fade show active" id="home">
+                        <br>
+                            <div class="card card-body" style="position: initial;">
+                                <div class="form-row">
+                                    <div class="col-md-8 mb-3" style="position: inherit;">
+                                        <h2 style="text-align:left">Médicaments
+                                            
+                                            <a style="text-align:end" type="button" class="btn btn-success "  href="{% url 'export_csv_medicament' %}">
+                                                    <i class="fas fa-file-excel" style="margin-left: auto;margin-right: auto; display: block !important;"></i>
+                                            </a>
+                                        </h2>
+                                    </div>
+                                    <div class="col-md-4 mb-3" style="position: initial;">
+                                        <form method="get" class="form-inline my-2 my-lg-0 justify-content-center">
+                                            {% csrf_token %}
+                                            <div class ="form-group">
+                                                    <input type="text" name="srh"  class="form-control mr-sm-2" placeholder="Rechercher">
+                                                    <button type="submit" class="btn btn-success " data-url="{% url 'employee'%}"><i class="fas fa-search"  style="margin-left: auto;margin-right: auto; display: block !important;"></i></button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>   
+                            </div>
+                            <br>
+                            <div class="card card-body" style="position: initial;">
+                                <table class="table table-hover" id="id-medicament">
+                                    <thead>
+                                        <tr style="font-size:14px;">
+                                            <th scope="col-md-2">Image</th>
+                                            <th scope="col">Nom_c</th>
+                                            <th scope="col">dosage</th>
+                                            <th scope="col">PPM</th>
+                                            <th scope="col">Exp</th>
+                                            <th scope="col-md-3" style="text-align:center;">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="table-light" style="font-size:11px;" >
+                                        {% include 'Employee/Gestion_Medicament/medicament_list.html' %}
+                                    </tbody>
+                                </table> 
+                               {% include 'Employee/Gestion_Medicament/medicament_pagination.html' %}
+                            </div> 
+                    </div>
+                    </div> 
+            </div>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="modal-medicament">
+            <div class="modal-dialog" >
+                <div class="modal-content">   
+                </div>
+            </div>
+        </div> 
+        {% else %}
+        vous avez pas le droit
+    {% endif %}
+{% endblock %} 
